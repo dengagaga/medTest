@@ -13,12 +13,11 @@
         </div>
         <div class="action">
             <div class="price">
-            <span>{{ product.price.toFixed(0) }} ₽</span>
+              <span>{{ product.price.toFixed(0) }} ₽</span>
             </div>
           <btnPay />
         </div>
     </div>
-
 </template>
 <script setup>
 import { useRouter } from 'vue-router';
@@ -40,6 +39,7 @@ const goToProduct = (productID) => {
   position: relative;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   justify-content: space-between;
   gap: 20px;
   padding: 15px;
@@ -47,6 +47,10 @@ const goToProduct = (productID) => {
   width: 100%;
   background-color: #fff;
   border-radius: 15px;
+  transition: all .3s;
+}
+.card:hover {
+  transform: scale(1.03);
 }
 .card_top {
   display: flex;

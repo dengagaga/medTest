@@ -1,38 +1,16 @@
 <template>
     <div class="pagination_all">
-        <button @click="toggleActive(item)" :class="item.active ? 'pagination_item active' : 'pagination_item'" v-for="item in btns" :key="item">
-            {{ item.id }}
-        </button>
+      <button @click="productStore.prevPage()" :disabled="productStore.currentPage === 1">Назад</button>
+      <span>Страница {{ productStore.currentPage }} из {{ productStore.totalPages }}</span>
+      <button @click="productStore.nextPage()" :disabled="productStore.currentPage === productStore.totalPages">Вперед</button>
     </div>
 </template>
 <script setup>
-import { ref } from 'vue';
-const btns = ref([
-    {
-        id: 1,
-        active: true
-    },
-    {
-        id: 2,
-        active: false
-    },
-    {
-        id: 3,
-        active: false
-    },
-    {
-        id: 4,
-        active: false
-    },
-    {
-        id: 5,
-        active: false
-    },
-])
-const toggleActive = (it) => {
-    btns.value.forEach(item => item.active = false)
-    it.active = true
-}
+import { ref, computed } from 'vue';
+import { useProductStore } from '@/stores/product.js'
+const productStore = useProductStore()
+
+
 </script>
 <style>
 .pagination_all {

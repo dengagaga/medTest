@@ -32,7 +32,8 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    height: 100%;
+    margin-top: 200px;
     gap: 40px;
 }
 .product_left {
@@ -69,8 +70,6 @@ onMounted(() => {
 }
 .product_right-price {
     font-size: 18px;
-}
-.product_right-btn {
 }
 
 </style>

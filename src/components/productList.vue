@@ -1,25 +1,28 @@
 <template>
     <div class="product_list">
-        <product v-for="product in productStore.products" :key="product" :product="product" />
+        <product  v-for="product in productStore.currentCards" :key="product" :product="product" />
     </div>
+    <pagination />
 </template>
 <script setup>
 import product from '@/components/product.vue'
-import { onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import pagination  from '@/components/pagination.vue'
 import { useProductStore } from '@/stores/product.js'
-const productStore = useProductStore()
 onMounted(() => {
-    if (productStore.products == 0) {
-        console.log('sssssssss');
-        
+    if (productStore.products == 0) {        
         productStore.getProducts()
     }
 })
+const productStore = useProductStore()
+
+
+
 </script>
 <style>
 .product_list {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     justify-items: center;
     gap: 20px;
 }
