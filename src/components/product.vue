@@ -1,28 +1,19 @@
 <template>
     <div class="card">
+      <div class="card_top">
         <div class="image_container">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="image">
-            <path
-                d="M20 5H4V19L13.2923 9.70649C13.6828 9.31595 14.3159 9.31591 14.7065 9.70641L20 15.0104V5ZM2 3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z"
-            ></path>
-            </svg>
+          <img :src="product.images[0].url" alt="">
         </div>
         <div class="title">
-            <span>New brand name</span>
+            <span>{{ product.name }}</span>
         </div>
-        <div class="size">
-            <span>Size</span>
-            <ul class="list-size">
-            <li class="item-list"><button class="item-list-button">37</button></li>
-            <li class="item-list"><button class="item-list-button">38</button></li>
-            <li class="item-list"><button class="item-list-button">39</button></li>
-            <li class="item-list"><button class="item-list-button">40</button></li>
-            <li class="item-list"><button class="item-list-button">41</button></li>
-            </ul>
+      </div>
+        <div class="description">
+           {{ product.description }}
         </div>
         <div class="action">
             <div class="price">
-            <span>$299</span>
+            <span>{{ product.price.toFixed(0) }} ₽</span>
             </div>
             <button class="cart-button">
             <svg
@@ -45,144 +36,96 @@
     </div>
 
 </template>
-<script setup></script>
+<script setup>
+const props = defineProps({
+    product: Object
+})
+
+</script>
 <style>
 .card {
-  --bg-card: #27272a;
-  --primary: #6d28d9;
-  --primary-800: #4c1d95;
-  --primary-shadow: #2e1065;
-  --light: #d9d9d9;
-  --zinc-800: #18181b;
-  --bg-linear: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
-
   position: relative;
-
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-
-  padding: 1rem;
-  width: 14rem;
-  background-color: var(--bg-card);
-
-  border-radius: 1rem;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px;
+  max-width: 240px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 15px;
 }
-
+.card_top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .image_container {
   overflow: hidden;
   cursor: pointer;
-
   position: relative;
   z-index: 5;
-
   width: 100%;
-  height: 8rem;
-  background-color: var(--primary-800);
-
-  border-radius: 0.5rem;
+  height: 150px;
+  background-color: #243237;
+  border-radius:10px;
 }
 
-.image_container .image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 3rem;
-  fill: var(--light);
+.image_container img {
+  width: 100%;
+  height: 100%;
 }
 
 .title {
   overflow: clip;
-
   width: 100%;
-
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--light);
+  color: #706767;
   text-transform: capitalize;
   text-wrap: nowrap;
   text-overflow: ellipsis;
 }
 
-.size {
-  font-size: 0.75rem;
-  color: var(--light);
-}
-
-.list-size {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-
-  margin-top: 0.25rem;
-}
-
-.list-size .item-list {
-  list-style: none;
-}
-
-.list-size .item-list-button {
-  cursor: pointer;
-
-  padding: 0.5rem;
-  background-color: var(--zinc-800);
-
-  font-size: 0.75rem;
-  color: var(--light);
-
-  border: 2px solid var(--zinc-800);
-  border-radius: 0.25rem;
-
-  transition: all 0.3s ease-in-out;
-}
-
-.item-list-button:hover {
-  border: 2px solid var(--light);
-}
-.item-list-button:focus {
-  background-color: var(--primary);
-
-  border: 2px solid var(--primary-shadow);
-
-  box-shadow: inset 0px 1px 4px var(--primary-shadow);
+.description {
+  font-size: 12px;
+  color: #3A3A3A;
 }
 
 .action {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 10px;
+  justify-content: space-between;
 }
 
 .price {
-  font-size: 1.5rem;
+  font-size: 14px;
   font-weight: 700;
-  color: var(--light);
+  color: #706767;
 }
 
 .cart-button {
   cursor: pointer;
-
+  max-width: 130px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.25rem;
-
-  padding: 0.5rem;
+  gap: 15px;
+  padding: 10px;
   width: 100%;
-  background-image: var(--bg-linear);
-
+  background-color: #C8102E;
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--light);
+  color: #d9d9d9;
   text-wrap: nowrap;
-
-  border: 2px solid hsla(262, 83%, 58%, 0.5);
-  border-radius: 0.5rem;
-  box-shadow: inset 0 0 0.25rem 1px var(--light);
+  border: 2px solid #C8102E;
+  border-radius: 12px;
+  transition: all .3s;
 }
-
+.cart-button:hover {
+  opacity: .8;
+}
 .cart-button .cart-icon {
   width: 1rem;
 }

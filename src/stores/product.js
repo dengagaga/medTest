@@ -3,21 +3,17 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 
 export const useProductStore = defineStore('product', () => {
-  const product = ref(0)
-  const getProducts = axios.get('https://fakerapi.it/api/v2/products?_quantity=1&_taxes=12&_categories_type=uuid')
+  const products = ref(0)
+  const getProducts = () => axios.get('https://fakerapi.it/api/v2/products?_quantity=10&_taxes=12&_price_max=1000&_categories_type=uuid&_locale=ru_RU')
   .then(function (response) {
-    // обработка успешного запроса
-    console.log(response);
+    products.value = response.data.data
   })
   .catch(function (error) {
-    // обработка ошибки
+   
     console.log(error);
   })
-  .finally(function () {
-    // выполняется всегда
-  });
   return {
-    product,
+    products,
     getProducts
   }
 })
