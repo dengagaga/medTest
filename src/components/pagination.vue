@@ -6,7 +6,6 @@
     </div>
 </template>
 <script setup>
-import { ref, computed } from 'vue';
 import { useProductStore } from '@/stores/product.js'
 const productStore = useProductStore()
 

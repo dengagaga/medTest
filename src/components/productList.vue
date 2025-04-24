@@ -6,7 +6,7 @@
 </template>
 <script setup>
 import product from '@/components/product.vue'
-import { ref, onMounted, computed } from 'vue'
+import {  onMounted } from 'vue'
 import pagination  from '@/components/pagination.vue'
 import { useProductStore } from '@/stores/product.js'
 onMounted(() => {
