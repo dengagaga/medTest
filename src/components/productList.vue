@@ -9,7 +9,11 @@ import { onMounted } from 'vue'
 import { useProductStore } from '@/stores/product.js'
 const productStore = useProductStore()
 onMounted(() => {
-    productStore.getProducts()
+    if (productStore.products == 0) {
+        console.log('sssssssss');
+        
+        productStore.getProducts()
+    }
 })
 </script>
 <style>

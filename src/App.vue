@@ -4,13 +4,20 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    
-  </header>
+  <div class="container">
+    <header>
 
-  <RouterView />
+    </header>
+
+    <RouterView />
+  </div>
+ 
 </template>
 
 <style scoped>
-
+.container {
+  max-width: 1440px;
+  padding: 20px;
+  margin: 0 auto;
+}
 </style>
