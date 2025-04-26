@@ -1,6 +1,7 @@
 <template>
+    
     <div class="product_list">
-        <product  v-for="product in productStore.currentCards" :key="product" :product="product" />
+        <product  v-for="product in productStore.productsSearch.length > 0 ? productStore.productsSearch : productStore.currentCards" :key="product" :product="product" />
     </div>
     <pagination />
 </template>
@@ -21,6 +22,7 @@ const productStore = useProductStore()
 </script>
 <style>
 .product_list {
+    min-height: 720px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;

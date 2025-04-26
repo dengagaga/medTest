@@ -8,9 +8,6 @@
             <span>{{ product.name }}</span>
         </div>
       </div>
-        <div class="description">
-           {{ product.description }}
-        </div>
         <div class="action">
             <div class="price">
               <span>{{ product.price.toFixed(0) }} ₽</span>
@@ -44,6 +41,7 @@ const goToProduct = (productID) => {
   gap: 20px;
   padding: 15px;
   max-width: 240px;
+  height: 350px;
   width: 100%;
   background-color: #fff;
   border-radius: 15px;

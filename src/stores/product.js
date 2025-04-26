@@ -4,6 +4,7 @@ import axios from 'axios'
 
 export const useProductStore = defineStore('product', () => {
   const products = ref([])
+  const productsSearch = ref([])
   const getProducts = () => axios.get('https://fakerapi.it/api/v2/products?_quantity=36&_taxes=12&_price_max=1000&_categories_type=uuid&_locale=ru_RU')
   .then(function (response) {
     products.value = response.data.data
@@ -14,7 +15,7 @@ export const useProductStore = defineStore('product', () => {
   })
 
   const currentPage = ref(1)
-  const countItemsPage = ref(9)
+  const countItemsPage = ref(8)
   const totalPages = computed(() => Math.ceil(products.value.length / countItemsPage.value))
   
   const currentCards = computed(() => {
@@ -38,6 +39,7 @@ export const useProductStore = defineStore('product', () => {
     currentCards,
     totalPages,
     countItemsPage,
-    currentPage
+    currentPage,
+    productsSearch
   }
 })
