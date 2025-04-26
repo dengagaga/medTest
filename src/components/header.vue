@@ -1,15 +1,24 @@
 <template>
       <header class="header">
         <router-link  to="/" class="header_link">Главная</router-link>
-        <router-link  to="/person" class="header_link">О Пользователе</router-link>
+        <router-link v-if="personStore.person.length > 0"  to="/person" class="header_link">О Пользователе</router-link>
+        <button v-else @click="toggleView()" class="header_link">Авторизация</button>
         <input v-model="search" type="text"  class="search">
+        <AutorizationModal @toggleView="toggleView" v-if="viewModalAutorization" />
     </header>
 </template>
 <script setup>
 import { useProductStore } from '@/stores/product.js'
+import { usePersonStore } from '@/stores/person.js'
 import {computed, ref, watch} from 'vue'
+import AutorizationModal from './AutorizationModal.vue'
 const productStore = useProductStore()
+const personStore = usePersonStore()
+const viewModalAutorization = ref(false)
 const search = ref('')
+const toggleView = () => {
+  viewModalAutorization.value = !viewModalAutorization.value
+}
 const searchArray = () => {
   productStore.productsSearch = productStore.currentCards.filter(item => item.name.toLowerCase().includes(search.value.toLowerCase()))  
 }
