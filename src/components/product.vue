@@ -62,7 +62,7 @@ const goToProduct = (productID) => {
   z-index: 5;
   width: 100%;
   height: 150px;
-  background-color: #243237;
+  background-color: rgba(17, 24, 39, 1);
   border-radius:10px;
 }
 

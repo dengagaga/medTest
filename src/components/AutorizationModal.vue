@@ -1,23 +1,29 @@
 <template>
     <div class="autorization_modal">
-        <button class="close" @click="$emit('toggleView')">Закрыть</button>
-        <div class="autorization_modal-content">
-            <h2 class="autorization_modal-title">Авторизация</h2>
-            <div class="autorization_modal-inps">
-                <label for="">Логин</label>
-                <input type="text" v-model="login" class="autorization_modal-content-inp">
+        <div class="autorization_modal-all">
+
+        
+            <button class="close" @click="$emit('toggleView')">Закрыть</button>
+            <div class="autorization_modal-content">
+                <h2 class="autorization_modal-title">Авторизация</h2>
+                <div class="autorization_modal-inps">
+                    <label for="">Логин</label>
+                    <input type="text" v-model="login" class="autorization_modal-content-inp">
+                </div>
+                <div class="autorization_modal-inps">
+                    <label for="">Пароль</label>
+                    <input type="password" v-model="password" class="autorization_modal-content-inp">
+                </div>
+                <button @click="autorizationPerson()" class="sign">Войти</button>
             </div>
-            <div class="autorization_modal-inps">
-                <label for="">Пароль</label>
-                <input type="password" v-model="password" class="autorization_modal-content-inp">
-            </div>
-            <button @click="autorizationPerson()" class="sign">Войти</button>
         </div>
     </div>
 </template>
 <script setup>
 import { usePersonStore } from '@/stores/person.js'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
+const router = useRouter()
 const personStore = usePersonStore()
 const login = ref('')
 const password = ref('')
@@ -27,12 +33,24 @@ const autorizationPerson = () => {
         if (login.value == 'admin' && password.value == 'admin') {
             personStore.getPerson()
             emit('toggleView')
+            router.push('/person')
         }
     }
 }
 </script>
 <style>
 .autorization_modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+    right: 0;
+    left: 0;
+}
+.autorization_modal-all {
     position: fixed;
     top: 50%;
     left: 50%;

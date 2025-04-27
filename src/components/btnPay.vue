@@ -28,12 +28,12 @@
   gap: 15px;
   padding: 10px;
   width: 100%;
-  background-color: #C8102E;
+  background-color: rgba(167, 139, 250, 1);
   font-size: 0.75rem;
   font-weight: 500;
   color: #d9d9d9;
   text-wrap: nowrap;
-  border: 2px solid #C8102E;
+  border: 2px solid rgba(167, 139, 250, 1);
   border-radius: 12px;
   transition: all .3s;
 }

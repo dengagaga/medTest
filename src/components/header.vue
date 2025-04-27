@@ -3,6 +3,7 @@
         <router-link  to="/" class="header_link">Главная</router-link>
         <router-link v-if="personStore.person.length > 0"  to="/person" class="header_link">О Пользователе</router-link>
         <button v-else @click="toggleView()" class="header_link">Авторизация</button>
+        <button  @click="toggleView()" class="header_link">Форма обратной связи</button>
         <input v-model="search" type="text"  class="search">
         <AutorizationModal @toggleView="toggleView" v-if="viewModalAutorization" />
     </header>
