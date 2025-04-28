@@ -3,9 +3,10 @@
         <router-link  to="/" class="header_link">Главная</router-link>
         <router-link v-if="personStore.person.length > 0"  to="/person" class="header_link">О Пользователе</router-link>
         <button v-else @click="toggleView()" class="header_link">Авторизация</button>
-        <button  @click="toggleView()" class="header_link">Форма обратной связи</button>
+        <button  @click="toggleViewFeedBack()" class="header_link">Форма обратной связи</button>
         <input v-model="search" type="text"  class="search">
-        <AutorizationModal @toggleView="toggleView" v-if="viewModalAutorization" />
+        <AutorizationModal title="Авторизация" @toggleView="toggleView" v-if="viewModalAutorization" />
+        <AutorizationModal title="Обратная связь" @toggleViewFeedBack="toggleViewFeedBack" v-if="viewFeedBack" />
     </header>
 </template>
 <script setup>
@@ -13,12 +14,17 @@ import { useProductStore } from '@/stores/product.js'
 import { usePersonStore } from '@/stores/person.js'
 import {computed, ref, watch} from 'vue'
 import AutorizationModal from './AutorizationModal.vue'
+import FeedbackForm from './FeedbackForm.vue'
 const productStore = useProductStore()
 const personStore = usePersonStore()
 const viewModalAutorization = ref(false)
+const viewFeedBack = ref(false)
 const search = ref('')
 const toggleView = () => {
   viewModalAutorization.value = !viewModalAutorization.value
+}
+const toggleViewFeedBack = () => {
+  viewFeedBack.value = !viewFeedBack.value
 }
 const searchArray = () => {
   productStore.productsSearch = productStore.currentCards.filter(item => item.name.toLowerCase().includes(search.value.toLowerCase()))  

@@ -1,5 +1,5 @@
 <template>
-    <div class="person">
+    <div class="person" v-if="personStore.person.length > 0">
         <p>Имя: {{ personStore.person[0].firstname }}</p>
         <p>Фамилия: {{ personStore.person[0].lastname }}</p>
         <p>E-mail:  {{ personStore.person[0].email }}</p>

@@ -1,11 +1,9 @@
 <template>
-    <div class="autorization_modal">
+    <div class="autorization_modal" v-if="!viewFeed">
         <div class="autorization_modal-all">
-
-        
-            <button class="close" @click="$emit('toggleView')">Закрыть</button>
-            <div class="autorization_modal-content">
-                <h2 class="autorization_modal-title">Авторизация</h2>
+            <button class="close" @click="$emit('toggleView'),$emit('toggleViewFeedBack')">Закрыть</button>
+            <div class="autorization_modal-content" v-if="title == 'Авторизация'">
+                <h2 class="autorization_modal-title">{{ title }}</h2>
                 <div class="autorization_modal-inps">
                     <label for="">Логин</label>
                     <input type="text" v-model="login" class="autorization_modal-content-inp">
@@ -16,18 +14,56 @@
                 </div>
                 <button @click="autorizationPerson()" class="sign">Войти</button>
             </div>
+            <div class="autorization_modal-content" v-if="title == 'Обратная связь'">
+                <h2 class="autorization_modal-title">{{ title }}</h2>
+                <div class="autorization_modal-inps">
+                    <label for="">ФИО</label>
+                    <input type="text" v-model="name" class="autorization_modal-content-inp">
+                </div>
+                <div class="autorization_modal-inps">
+                    <label for="">Телефон</label>
+                    <input type="number" v-model="phone" class="autorization_modal-content-inp">
+                </div>
+                <div class="autorization_modal-inps">
+                    <label for="">Почта</label>
+                    <input type="email" v-model="email" class="autorization_modal-content-inp">
+                </div>
+                <div class="autorization_modal-inps">
+                    <label for="">Комментарий</label>
+                    <input type="text" v-model="comment" class="autorization_modal-content-inp">
+                </div>
+                <div class="autorization_modal-inps">
+                    <label for="">Дата</label>
+                    <VaDateInput  v-model="date" />
+                </div>
+                
+                <p v-if="eror" class="eror">Заполните все поля</p>
+                <button @click="send()" class="sign">Отправить</button>
+            </div>
         </div>
     </div>
+    <FeedbackForm :name="name" :phone="phone" :email="email" :comment="comment" @viewFeedtoggle="viewFeedtoggle" :date="date" v-if="viewFeed"></FeedbackForm>
 </template>
 <script setup>
 import { usePersonStore } from '@/stores/person.js'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router';
+import FeedbackForm from './FeedbackForm.vue'
 const router = useRouter()
 const personStore = usePersonStore()
 const login = ref('')
 const password = ref('')
-const emit = defineEmits(['toggleView'])
+const name = ref('')
+const phone = ref('')
+const email = ref('')
+const comment = ref('')
+const eror = ref(false)
+const viewFeed = ref(false)
+const date = ref(new Date())
+defineProps({
+    title:String
+})
+const emit = defineEmits(['toggleView', 'toggleViewFeedBack'])
 const autorizationPerson = () => {
     if (login.value.length > 0 && password.value.length > 0) {
         if (login.value == 'admin' && password.value == 'admin') {
@@ -36,6 +72,19 @@ const autorizationPerson = () => {
             router.push('/person')
         }
     }
+}
+const send = () => {
+    if (name.value != '' && phone.value != '' && email.value != '' && comment.value != '' && date.value != '') {
+        viewFeed.value = true
+        eror.value = false
+        
+    } else {
+        eror.value = true
+    }
+}
+const viewFeedtoggle = () => {
+    viewFeed.value = !viewFeed.value
+    emit('toggleViewFeedBack')
 }
 </script>
 <style>
@@ -57,7 +106,7 @@ const autorizationPerson = () => {
     transform: translate(-50%, -50%);
     width: 400px;
     z-index: 22;
-    height: 500px;
+    /* height: 500px; */
     background-color: rgba(17, 24, 39, 1);
     border-radius: 12px;
     padding: 30px;
@@ -86,6 +135,9 @@ const autorizationPerson = () => {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+.eror {
+    color: red;
 }
 .autorization_modal-inps label{
     color: rgba(156, 163, 175, 1);

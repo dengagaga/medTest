@@ -5,13 +5,13 @@
         </div>
         <div class="product_right">
             <h3 class="product_right-title">{{ product.name }}</h3>
+            <h5 class="product_right-description">Описание: {{ product.description }}</h5>
             <div class="product_right-prices">
                 <span class="product_right-price">Цена: {{ product.price.toFixed(0) }} ₽ </span>
                 <span class="product_right-price">Чистая цена: {{ product.net_price.toFixed(0) }} ₽ </span>
                 <span class="product_right-price">Налог: {{ product.taxes.toFixed(0) }} ₽ </span>
                 <btnPay/>
             </div>
-            <h5 class="product_right-description">Описание: {{ product.description }}</h5>
         </div>
     </div>
 </template>
@@ -19,6 +19,7 @@
 import { useProductStore } from '@/stores/product.js'
 import { onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router';
+
 import btnPay from '@/components/btnPAy.vue';
 const route = useRoute()
 const productStore = useProductStore()
