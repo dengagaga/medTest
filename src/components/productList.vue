@@ -2,6 +2,7 @@
     
     <div class="product_list">
         <product v-for="product in conditionArray" :key="product" :product="product" />
+        {{  conditionArray}}
     </div>
     <pagination />
 </template>
@@ -10,7 +11,7 @@ import {  onMounted } from 'vue'
 import { useProductStore } from '@/stores/product.js'
 import { computed } from 'vue'
 import pagination  from '@/components/pagination.vue'
-import product from './product.vue'
+import product from '@/components/product.vue'
 onMounted(() => {
     if (productStore.products == 0) {        
         productStore.getProducts()
