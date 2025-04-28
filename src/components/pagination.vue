@@ -8,8 +8,6 @@
 <script setup>
 import { useProductStore } from '@/stores/product.js'
 const productStore = useProductStore()
-
-
 </script>
 <style>
 .pagination_all {

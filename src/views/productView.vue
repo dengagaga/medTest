@@ -17,16 +17,12 @@
 </template>
 <script setup>
 import { useProductStore } from '@/stores/product.js'
-import { onMounted, computed } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router';
-
 import btnPay from '@/components/btnPAy.vue';
 const route = useRoute()
 const productStore = useProductStore()
 const product = computed(() => productStore.products.find(item => item.id == route.query.param) ) 
-onMounted(() => {
-    console.log(product.value)
-})
 </script>
 <style>
 .product_all {

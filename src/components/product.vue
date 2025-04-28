@@ -18,7 +18,7 @@
 </template>
 <script setup>
 import { useRouter } from 'vue-router';
-import btnPay from './btnPAy.vue';
+import btnPay from './btnPay.vue';
 const props = defineProps({
     product: Object
 })
@@ -40,7 +40,7 @@ const goToProduct = (productID) => {
   justify-content: space-between;
   gap: 20px;
   padding: 15px;
-  max-width: 240px;
+  max-width: 330px;
   height: 350px;
   width: 100%;
   background-color: #fff;

@@ -13,7 +13,6 @@ export const useProductStore = defineStore('product', () => {
    
     console.log(error);
   })
-
   const currentPage = ref(1)
   const countItemsPage = ref(8)
   const totalPages = computed(() => Math.ceil(products.value.length / countItemsPage.value))

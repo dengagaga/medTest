@@ -3,7 +3,7 @@
         <div class="feedBack_modal-all">
             <button class="close" @click="$emit('viewFeedtoggle')">Закрыть</button>
             <div class="feedBack_modal-content">
-                <p v-if="personStore.person.length > 0">
+                <p v-if="conditionLength">
                     ID: {{ personStore.person[0].id }}
                 </p>
                 <p>ФИО: {{ name }}</p>
@@ -11,10 +11,10 @@
                 <p>Почта: {{ email }}</p>
                 <p>Комментарий: {{ comment }}</p>
                 <p>Дата: {{ date }}</p>
-                <p v-if="personStore.person.length > 0">
+                <p v-if="conditionLength">
                     Сайт : {{ personStore.person[0].website }}
                 </p>
-                <p v-if="personStore.person.length > 0">
+                <p v-if="conditionLength">
                     День рождения : {{ personStore.person[0].birthday }}
                 </p>
             </div>
@@ -23,8 +23,9 @@
 </template>
 <script setup>
 import { usePersonStore } from '@/stores/person.js'
-import { ref } from 'vue'
+import { computed } from 'vue'
 const personStore = usePersonStore()
+const conditionLength = computed(() => personStore.person.length > 0)
 const emit = defineEmits(['viewFeedtoggle'])
 defineProps({
     name: String,

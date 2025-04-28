@@ -1,7 +1,7 @@
 <template>
     
     <div class="product_list">
-        <product  v-for="product in productStore.productsSearch.length > 0 ? productStore.productsSearch : productStore.currentCards" :key="product" :product="product" />
+        <product v-for="product in conditionArray" :key="product" :product="product" />
     </div>
     <pagination />
 </template>
@@ -10,15 +10,14 @@ import product from '@/components/product.vue'
 import {  onMounted } from 'vue'
 import pagination  from '@/components/pagination.vue'
 import { useProductStore } from '@/stores/product.js'
+import { computed } from 'vue'
 onMounted(() => {
     if (productStore.products == 0) {        
         productStore.getProducts()
     }
 })
 const productStore = useProductStore()
-
-
-
+const conditionArray = computed(() => productStore.productsSearch.length > 0 ? productStore.productsSearch : productStore.currentCards)
 </script>
 <style>
 .product_list {

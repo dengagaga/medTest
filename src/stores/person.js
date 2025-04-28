@@ -12,9 +12,6 @@ export const usePersonStore = defineStore('person', () => {
     
         console.log(error);
     })
-
-
-
   return {
     person,
     getPerson
