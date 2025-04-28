@@ -2,7 +2,6 @@
     
     <div class="product_list">
         <product v-for="product in conditionArray" :key="product" :product="product" />
-        {{  conditionArray}}
     </div>
     <pagination />
 </template>
