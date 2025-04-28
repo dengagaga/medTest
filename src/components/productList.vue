@@ -1,7 +1,7 @@
 <template>
     
     <div class="product_list">
-        <product v-for="product in productStore.currentCards" :key="product" :product="product" />
+        <product v-for="product in conditionArray" :key="product" :product="product" />
     </div>
     <pagination />
 </template>
