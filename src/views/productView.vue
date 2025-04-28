@@ -19,7 +19,7 @@
 import { useProductStore } from '@/stores/product.js'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router';
-import btnPay from '@/components/btnPAy.vue';
+import btnPay from '@/components/btnPay.vue';
 const route = useRoute()
 const productStore = useProductStore()
 const product = computed(() => productStore.products.find(item => item.id == route.query.param) ) 
