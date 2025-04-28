@@ -1,7 +1,7 @@
 <template>
     
     <div class="product_list">
-        <product v-for="product in conditionArray" :key="product" :product="product" />
+        <product v-for="prod in conditionArray" :key="prod" :product="prod" />
     </div>
     <pagination />
 </template>
