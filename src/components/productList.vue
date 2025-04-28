@@ -6,11 +6,11 @@
     <pagination />
 </template>
 <script setup>
-import product from '@/components/product.vue'
 import {  onMounted } from 'vue'
-import pagination  from '@/components/pagination.vue'
 import { useProductStore } from '@/stores/product.js'
 import { computed } from 'vue'
+import pagination  from '@/components/pagination.vue'
+import product from './product.vue'
 onMounted(() => {
     if (productStore.products == 0) {        
         productStore.getProducts()

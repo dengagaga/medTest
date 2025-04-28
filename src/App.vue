@@ -9,5 +9,5 @@
 import { RouterView } from 'vue-router'
 import Header from './components/header.vue';
 </script>
-<style scoped>
+<style>
 </style>
